@@ -1,0 +1,11 @@
+####### Collecting diagnostic information for VMware vCloud Director https://kb.vmware.com/s/article/1026312
+
+1. /opt/vmware/vcloud-director/bin/vmware-vcd-support --all -m
+
+Przenosimy bo jest problem z uprawnieniami jak się sciąga plik przez WinSCP
+2. mv /opt/vmware/vcloud-director/data/transfer/vmware-vcd-support/vmware-vcd-support-XXXXXXXXXXXX.tgz /tmp/
+
+3. Trzeba zmienic uprawniania poniewaz uzywamy konta domenowego do logowania sie przez SSH a plik jest wytworzony przez roota.
+chmod 777 /tmp/mware-vcd-support-XXXXXXXXXXXX.tgz
+
+Teraz mozna sciągnąć plik z WinSCP.
