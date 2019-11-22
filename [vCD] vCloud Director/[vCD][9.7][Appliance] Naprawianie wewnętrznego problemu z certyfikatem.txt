@@ -1,0 +1,91 @@
+################### OBJAW #########################
+
+Powiązane z SR: 19064001809
+
+tail -f /opt/vmware/vcloud-director/logs/cell-management-tool.log
+
+
+2019-11-22 11:04:57,361 | INFO     | main                      | TrustStoreImporter             | Opened existing keystore at /opt/vmware/vcloud-director/etc/truststore. |
+2019-11-22 11:04:57,378 | ERROR    | main                      | TrustStoreImporter             | Keystore is malformed or the keystore password is incorrect. |
+java.io.IOException: Keystore was tampered with, or password was incorrect
+        at com.sun.crypto.provider.JceKeyStore.engineLoad(JceKeyStore.java:879)
+        at java.security.KeyStore.load(KeyStore.java:1445)
+        at com.vmware.vcloud.common.crypto.TrustStoreImporter.loadKeystore(TrustStoreImporter.java:63)
+        at com.vmware.vcloud.common.crypto.TrustStoreImporter.<init>(TrustStoreImporter.java:52)
+        at com.vmware.vcloud.common.crypto.TrustedCertificateImporter.importPem(TrustedCertificateImporter.java:39)
+        at com.vmware.vcloud.trustedcertificates.cmt.ImportTrustedCertificatesCommand.doCommandLocally(ImportTrustedCertificatesCommand.java:215)
+        at com.vmware.vcloud.trustedcertificates.cmt.ImportTrustedCertificatesCommand.executeCommand(ImportTrustedCertificatesCommand.java:162)
+        at com.vmware.vcloud.common.cmt.HibernateBasedToolCommand.doCommandInternal(HibernateBasedToolCommand.java:43)
+        at com.vmware.vcloud.common.cmt.AbstractDatabaseToolCommand.doCommand(AbstractDatabaseToolCommand.java:87)
+        at com.vmware.vcloud.cell.management.internal.AbstractToolCommand.call(AbstractToolCommand.java:177)
+        at com.vmware.vcloud.cell.management.internal.AbstractToolCommand.call(AbstractToolCommand.java:37)
+        at com.vmware.vcloud.cell.management.CellManagementTool.start(CellManagementTool.java:299)
+        at com.vmware.vcloud.cell.management.CellManagementTool.main(CellManagementTool.java:215)
+        at com.vmware.vcloud.cell.management.CellManagementTool.main(CellManagementTool.java:228)
+Caused by: java.security.UnrecoverableKeyException: Password verification failed
+        ... 14 more
+2019-11-22 11:04:57,384 | ERROR    | main                      | ImportTrustedCertificatesCommand | Failed to extract or import certificates, consult cell-management-tool.log. |
+java.io.IOException: Keystore was tampered with, or password was incorrect
+        at com.sun.crypto.provider.JceKeyStore.engineLoad(JceKeyStore.java:879)
+        at java.security.KeyStore.load(KeyStore.java:1445)
+        at com.vmware.vcloud.common.crypto.TrustStoreImporter.loadKeystore(TrustStoreImporter.java:63)
+        at com.vmware.vcloud.common.crypto.TrustStoreImporter.<init>(TrustStoreImporter.java:52)
+        at com.vmware.vcloud.common.crypto.TrustedCertificateImporter.importPem(TrustedCertificateImporter.java:39)
+        at com.vmware.vcloud.trustedcertificates.cmt.ImportTrustedCertificatesCommand.doCommandLocally(ImportTrustedCertificatesCommand.java:215)
+        at com.vmware.vcloud.trustedcertificates.cmt.ImportTrustedCertificatesCommand.executeCommand(ImportTrustedCertificatesCommand.java:162)
+        at com.vmware.vcloud.common.cmt.HibernateBasedToolCommand.doCommandInternal(HibernateBasedToolCommand.java:43)
+        at com.vmware.vcloud.common.cmt.AbstractDatabaseToolCommand.doCommand(AbstractDatabaseToolCommand.java:87)
+        at com.vmware.vcloud.cell.management.internal.AbstractToolCommand.call(AbstractToolCommand.java:177)
+        at com.vmware.vcloud.cell.management.internal.AbstractToolCommand.call(AbstractToolCommand.java:37)
+        at com.vmware.vcloud.cell.management.CellManagementTool.start(CellManagementTool.java:299)
+        at com.vmware.vcloud.cell.management.CellManagementTool.main(CellManagementTool.java:215)
+        at com.vmware.vcloud.cell.management.CellManagementTool.main(CellManagementTool.java:228)
+Caused by: java.security.UnrecoverableKeyException: Password verification failed
+        ... 14 more
+
+
+############### ROZWIĄZANIE ########################
+    Celem jest odbudowa "keystore", który w tej chwili mi problemy z uwierzytelnienem.
+
+First in relation to certificate issue this is a back end which should not have any immediate impact but could cause issues in the future. It is related to internal certificates and not the certificates we see when connecting to the vCloud Director UI. I have tested the steps and confirmed the resolution in a lab environment. We can have a further Zoom to work through these together but they are as follows:
+
+    1. Shut down the vCloud Director Cell service:
+    
+        /opt/vmware/vcloud-director/bin/cell-management-tool cell -i $(top -u vcloud -b1 -s1 -n1 | grep java | head -n1 | awk '{print $1}') -s
+        
+    2. Stop the appliance-sync.timer service on the vCD Cell:
+    
+        systemctl stop appliance-sync.timer
+        
+    3. Move the existing truststore file in vCD's etc folder to a backup name:
+    
+        mv /opt/vmware/vcloud-director/etc/truststore /opt/vmware/vcloud-director/etc/truststore.orig
+        
+    4. Start the appliance-sync.timer service again:
+    
+        systemctl start appliance-sync.timer
+        
+    5. Verify that after restart of this service there is a new truststore and it is writable for the appliance-sync.timer service:
+    
+        tail -f /opt/vmware/var/log/vcd/appliance-sync.log
+        
+        NOTE: Allow for a number of iterations of this service runs to complete, e.g. by waiting for 3 minutes.
+        
+    6. Start the main vCD service again:
+    
+        systemctl start vmware-vcd
+        
+    7. Ensure that the vCD service starts again without issue and wait for the UI to become available from this Cell:
+    
+        tail -f /opt/vmware/vcloud-director/logs/cell.log
+        
+    8. After vCD has restarted confirm that the cell-management-tool logs show the certs being added to the truststore successfully:
+    
+        tail -f /opt/vmware/vcloud-director/logs/cell-management-tool.log
+        
+        We expect messages such as:
+        | INFO     | main                      | TrustStoreImporter             | Opened existing keystore at /opt/vmware/vcloud-director/etc/truststore. |
+        | INFO     | main                      | TrustStoreImporter             | Adding certificate to truststore. |
+    
+
+
