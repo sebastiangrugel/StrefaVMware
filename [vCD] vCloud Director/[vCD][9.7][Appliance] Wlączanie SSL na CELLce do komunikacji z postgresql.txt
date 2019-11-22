@@ -1,0 +1,32 @@
+To  re-enable SSL communication from the Primary Cell's vCD service to the database as this appears to be disabled and the vCD appliances use SSL communication by default.
+The steps to enable this effectively are those from the vCD documentation here, https://docs.vmware.com/en/vCloud-Director/10.0/com.vmware.vcloud.install.doc/GUID-2BEE464F-F300-42A3-94B3-99DE7B59E8EC.html.
+We can perform these steps together after completing those above:
+
+    1. On the Primary vCD Cells confirm that there is no SSL config present for the connection to the database:
+    
+        grep 'database.jdbcUrl' /opt/vmware/vcloud-director/etc/global.properties
+        
+        If SSL is disabled we will see the following:
+        
+        database.jdbcUrl = jdbc:postgresql://X.X.0.49:5432/vcloud?socketTimeout=90
+        
+        If SSL was enabled we expect a value similar to the following:
+        
+        database.jdbcUrl=jdbc:postgresql://X.X.0.49:5432/vcloud?socketTimeout=90&sslfactory=com.vmware.vcloud.common.ssl.PostgresLocalTruststoreValidatingSocketFactory&ssl=true
+        
+    2. If SSL communication is disabled we will need to stop the vCloud Director Cell services and enable it.
+        Shut down the vCloud Director Cell service:
+    
+        /opt/vmware/vcloud-director/bin/cell-management-tool cell -i $(top -u vcloud -b1 -s1 -n1 | grep java | head -n1 | awk '{print $1}') -s
+    
+    3. To enable SSL communication we can run the command from the documentation above:
+    
+        /opt/vmware/vcloud-director/bin/cell-management-tool reconfigure-database --database-ssl true
+        
+    4. We can then confirm that the SSL setting is set:
+    
+        grep 'database.jdbcUrl' /opt/vmware/vcloud-director/etc/global.properties
+        
+    5. Finally we can restart vCloud Director's Cell service:
+    
+        systemctl start vmware-vcd
