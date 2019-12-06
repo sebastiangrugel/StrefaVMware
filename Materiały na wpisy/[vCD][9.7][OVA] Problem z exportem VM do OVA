@@ -1,0 +1,19 @@
+Objaw:
+Po wyexportowaniu przez vCD 9.7 Appliance tenant klienta vAppa klienta (dotyczy niektorych nie wiem jeszcze czemu Windowsów 2012 i 2016. Mozliwe ze zostały stworzone w jakiś inny sposób) występują ponizsze problemu:
+- nie można rozpoakowac 7zipem
+- nie mozna zaimportowac do vSphere Client (HTML5) oraz Flash Web Clienta
+
+Pojawia się błąd przy kreatorze:
+"Issues detected with selected template. Details: - 164:17:VALUE_ILLEGAL: vmw:ExtraConfig element ''nvram'' with value ''ovf:/file/file2'' expects an existing File element with id ''file2'' in the References element."
+
+-nie można także zaimportować tego do vCD
+
+Rozwiązania:
+
+Aby mozna bylo zaimportowac do vCD i vSphere:
+1. Po zapisaniu do OVA rozpakowywujemy WinRarem
+2. Wykasowywuje extra klucze z descriptor,ovf albo tylko te związane z NVRAM (pozniej znalazlem takie dane w sieci: https://communities.vmware.com/thread/593743 oraz https://kb.vmware.com/s/article/67724)
+2. Podmieniam SHA key dla pliiku descriptor.ovf (Get-FileHash -Algorithm SHA1 .\descriptor.ovf i podmieniam go w pliku descriptor.mf
+3. Dalej przy imporcie do vCentra (i z tego co widze do vCD )nie ma problemu przy weryfikacji w kreatorze.
+
+Można też wyexportowac w vCD 9.7 klientem Flexowym, rozpakować OVA i zaimportować jako OVF.
