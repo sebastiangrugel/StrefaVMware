@@ -1,0 +1,13 @@
+1. Podczas exportowania VMki tworzy sie katalog np 3b42e821-be4c-432e-9bb0-fcbde5896bb8  na NFSie w folderze do transferu np. w  /mnt/vcloud-director/data/transfer
+2. Zapisujemy nazwe folderu w postaci ID i wykorzystujemy dalej.
+3. Na jednej z CELLek uzywamy komend:
+
+grep  -i 3b42e821-be4c-432e-9bb0-fcbde5896bb8  /opt/vmware/vcloud-director/logs/*
+tail -f /opt/vmware/vcloud-director/logs/* | grep 3b42e821-be4c-432e-9bb0-fcbde5896bb8
+tail -f /opt/vmware/vcloud-director/logs/* | grep ovf
+
+4. Kiedy znajdziemy output np.:
+
+Po linkach można dojść do ID vAPPa i dalej w PowerCli wyciągnąć wlaściciela transferu.
+
+Get-CIVApp  | ? Id -Match aa50df15-0668-46ec-82dc-cead31e8574a | select Org,Name
