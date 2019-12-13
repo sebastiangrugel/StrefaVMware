@@ -1,0 +1,8 @@
+/storage/log/vcops/log/adapters/NSXAdapter
+
+
+/storage/log/vcops/log/adapters/NSXAdapter # less NSXAdapter_407.log | grep license
+2019-12-12 12:41:56,761 ERROR [Collector worker thread 9] (407) com.vmware.vcops.adapters.nsx.NSXAdapter.onCollect - The adapter is not currently enabled due to a licensing restriction.  This adapter requires an Advanced or higher license.
+2019-12-12 12:46:56,776 ERROR [Collector worker thread 25] (407) com.vmware.vcops.adapters.nsx.NSXAdapter.onCollect - The adapter is not currently enabled due to a licensing restriction.  This adapter requires an Advanced or higher license.
+2019-12-12 12:51:56,778 ERROR [Collector worker thread 20] (407) com.vmware.vcops.adapters.nsx.NSXAdapter.onCollect - The adapter is not currently enabled due to a licensing restriction.  This adapter requires an Advanced or higher license.
+2019-12-12 12:56:56,781 ERROR [Collector worker thread 18] (407) com.vmware.vcops.adapters.nsx.NSXAdapter.onCollect - The adapter is not currently enabled due to a licensing restriction.  This adapter requires an Advanced or higher license.
