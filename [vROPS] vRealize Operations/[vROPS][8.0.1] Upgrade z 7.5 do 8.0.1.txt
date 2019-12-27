@@ -1,0 +1,4 @@
+Link do binariów: https://my.vmware.com/web/vmware/info/slug/infrastructure_operations_management/vmware_vrealize_operations/8_0
+
+Release notes:
+https://docs.vmware.com/en/vRealize-Operations-Manager/8.0.1/rn/vRealize-Operations-Manager-801.html
