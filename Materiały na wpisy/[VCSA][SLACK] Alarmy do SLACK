@@ -1,0 +1,6 @@
+### źródło:
+# https://cloudsphereblog.wordpress.com/2018/05/21/sending-vcsa-alarms-to-slack/
+
+#Monitoring maszyn wirtualnych 
+!/bin/bash
+curl -X POST --data-urlencode "payload={\"channel\": \"#vcenter-alarms\", \"username\": \"webhookbot\", \"text\": \"Virtual Machine $VMWARE_ALARM_TARGET_NAME has changed state to $VMWARE_ALARM_NAME\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/xxxxxxxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxx
