@@ -3,5 +3,11 @@
 
 http://github.com - automatic!
 
-[GitHub](http://github.com)
-[vROPS Documentation](https://docs.vmware.com/en/vRealize-Operations-Manager/index.html)
+
+*[vROPS Documentation](https://docs.vmware.com/en/vRealize-Operations-Manager/index.html)
+*[vRealize Operations ManagerBest Practices](https://docs.vmware.com/en/vRealize-Operations-Manager/7.0/vRealize_Operations_Manager_Best_Practices_7.x.pdf)
+
+
+
+
+
