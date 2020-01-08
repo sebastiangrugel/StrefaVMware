@@ -1,4 +1,4 @@
-![Logo](https://akademiadatacenter.pl/wp-content/uploads/2019/07/logo_transparent.png)
+![Logo](https://akademiadatacenter.pl/wp-content/uploads/2019/07/cropped-logo.png)
 
 # vRealizeOperation <h1>
 
