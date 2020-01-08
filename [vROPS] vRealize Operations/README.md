@@ -1,4 +1,3 @@
-# StrefaVMware
 # vRealizeOperation <h1>
 
 http://github.com - automatic!
@@ -8,6 +7,9 @@ http://github.com - automatic!
 * [vRealize Operations ManagerBest Practices](https://docs.vmware.com/en/vRealize-Operations-Manager/7.0/vRealize_Operations_Manager_Best_Practices_7.x.pdf)
 
 
+
+# Internet sources: <h3>
+* [vROps Webinar 2016 : Part 5 - Design & Deployment Considerations](https://youtu.be/ahaGYpSFpU8)
 
 
 
