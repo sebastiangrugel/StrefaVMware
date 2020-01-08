@@ -17,12 +17,11 @@
 * [SET.vRealize Operations Manager Design and Deploy All Assets](https://vmware.my.salesforce.com/sfc/#version?selectedDocumentId=06934000003N0ck)
 
 ## Community
-* [VMTN Community](https://communities.vmware.com/community/vmtn/vvd/)
-
+* [VMTN Community od vROPS](https://communities.vmware.com/community/vmtn/vrealize/vrops/overview)
+* [VMTN Community od VMware Validated Design](https://communities.vmware.com/community/vmtn/vvd/)
 
 ### Internet sources (not official): <h3>
 * [vROps Webinar 2016 : Part 5 - Design & Deployment Considerations](https://youtu.be/ahaGYpSFpU8)
-
 
 Spis linków jest integralną częścia strony https://AkademiaDatacenter.PL
 
