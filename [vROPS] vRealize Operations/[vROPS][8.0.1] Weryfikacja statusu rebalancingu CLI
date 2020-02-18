@@ -1,0 +1,5 @@
+# Pokazuje status rebalancingu
+$VMWARE_PYTHON_BIN $ALIVE_BASE/tools/vrops-platform-cli/vrops-platform-cli.py getShardStateMappingInfo
+
+# Pokazuje proces % przesłanych danych do innych nodów (w czasie rebalancingu):
+ egrep -i 'rebalance progress' /storage/log/vcops/log/analytics-4de79949-d5d7-4df4-b5ef-a546d46ae4a8.log
