@@ -1,0 +1,8 @@
+Objaw: Po wejsciu w Networking and Security > Logical Switches nie ładuje się lista swichy
+
+Rozwiązanie:
+
+1. Wykasowanie z katalogu z katalogu /home/secureall/secureall/sem/WEB-INF/lib  plików: log4j-1.2.17.jar ,  log4j-1.2.14.jar
+​2. Następnie restart serwisu: /etc/init.d/bluelane-manager restart 
+
+Związane z SR: 20114351704 
