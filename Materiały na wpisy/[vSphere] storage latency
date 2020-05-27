@@ -1,0 +1,13 @@
+Z logów vmkernel.log lub z eventów hosta:
+
+2020-05-19T16:37:48.635Z cpu16:2098101)WARNING: ScsiDeviceIO: 1564: Device naa.6006016002f03c0001759e81159fe911 performance has deteriorated. I/O latency increased from average value of 700 microseconds to 15488 microseconds.
+2020-05-20T17:53:30.793Z cpu17:2098101)WARNING: ScsiDeviceIO: 1564: Device naa.6006016002f03c0001759e81159fe911 performance has deteriorated. I/O latency increased from average value of 703 microseconds to 14065 microseconds.
+2020-05-21T19:08:03.985Z cpu26:2098101)WARNING: ScsiDeviceIO: 1564: Device naa.6006016002f03c0001759e81159fe911 performance has deteriorated. I/O latency increased from average value of 704 microseconds to 14131 microseconds.
+
+For reference:
+  >   10000 =  10 milliseconds == not good
+  >   15000 =  15 milliseconds == bad
+  >  200000 = 200 milliseconds == really bad
+  > 5000000 =   5 seconds      == broken
+
+Na podstawie SR: 20126789405 
