@@ -1,7 +1,9 @@
 # Documentation
 
 * [General Documentation](https://www.vmware.com/products/vcloud-director.html)
-* 
+* [VMware Validated Designs (VVD) for Cloud Providers](https://cloudsolutions.vmware.com/cloud-provider/validated-design.html)
+* [VMware Cloud Director Availability Documentation](https://docs.vmware.com/en/VMware-Cloud-Director-Availability/index.html)
+
 
 
 ## Maximus
@@ -13,5 +15,7 @@
 ## KB
 
 ## Whitepapers
+
+* [VMware Cloud Provider Platform - VMware Cloud Architecture Toolkit 5.0](https://www.vmware.com/learn/520897_REG.html)
 
 ## Blogs, Youtube, Podcasts
