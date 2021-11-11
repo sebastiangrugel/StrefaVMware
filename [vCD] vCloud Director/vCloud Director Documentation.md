@@ -1,4 +1,4 @@
-# Documentation
+# vCloud Director
 
 * [Product page](https://www.vmware.com/products/vcloud-director.html)
 * [General Documentation](https://docs.vmware.com/en/VMware-Cloud-Director/index.html)
@@ -26,3 +26,15 @@
 ## Related products
 
 * [VMware Cloud Director Availability Documentation](https://docs.vmware.com/en/VMware-Cloud-Director-Availability/index.html)
+
+
+# vCloud Director Availability
+
+* [VMware Cloud Director Availability Documentation](https://docs.vmware.com/en/VMware-Cloud-Director-Availability/index.html)
+
+### Whitepapers
+
+[Architecting VMware Cloud Director Availability Solution](https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/vcloud/vmware-architecting-cloud-director-availability-solution.pdf)
+
+### Blogs, Youtube, Podcasts
+[Feature Friday Episode 28 - VMware Cloud Director Availability service design](https://www.youtube.com/watch?v=qyiyheK3s6c&list=PLunwH0gjkUBhZBFlZMg5lxuhjr2y1Atjh&index=41)
