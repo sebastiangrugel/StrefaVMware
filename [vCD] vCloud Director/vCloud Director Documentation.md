@@ -32,9 +32,17 @@
 
 * [VMware Cloud Director Availability Documentation](https://docs.vmware.com/en/VMware-Cloud-Director-Availability/index.html)
 
+### Limits
+
+https://configmax.esp.vmware.com/guest?vmwareproduct=VMware%20Cloud%20Director%20Availability&release=VMware%20Cloud%20Director%20Availability%204.2&categories=39-0,40-0,113-0,114-0
+
 ### Whitepapers
 
-[Architecting VMware Cloud Director Availability Solution](https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/vcloud/vmware-architecting-cloud-director-availability-solution.pdf)
+* [Architecting VMware Cloud Director Availability Solution](https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/vcloud/vmware-architecting-cloud-director-availability-solution.pdf)
 
 ### Blogs, Youtube, Podcasts
 [Feature Friday Episode 28 - VMware Cloud Director Availability service design](https://www.youtube.com/watch?v=qyiyheK3s6c&list=PLunwH0gjkUBhZBFlZMg5lxuhjr2y1Atjh&index=41)
+
+### Labs
+
+* [HOL-2182-01-HBD - VMware Cloud Provider Platform - DR and Migration using VMware Cloud Director Availability]()
