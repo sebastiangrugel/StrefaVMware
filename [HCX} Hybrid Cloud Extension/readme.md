@@ -1,1 +1,0 @@
-* [Documentation](https://docs.vmware.com/pl/VMware-HCX/index.html)
